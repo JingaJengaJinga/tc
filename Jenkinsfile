@@ -3,12 +3,12 @@ pipeline {
     stages {
         stage('Build Application') {
             steps {
-                sh 'mvn -f java-tomcat-sample/pom.xml clean package'
+                echo env.BUILD_ID
             }
             post {
-                success {
+                always {
                     echo "Now Archiving the Artifacts...."
-                    archiveArtifacts artifacts: '**/*.war'
+                    
                 }
             }
         }
@@ -16,4 +16,4 @@ pipeline {
        
         }
     }
-}
+
